@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#
 ######################
 
 import xml.etree.cElementTree as et
@@ -21,7 +20,6 @@ def init_file(in_file):
 def parse_req_resp(xml):
 	
 	resp_reqs = []
-
 	print "\033[1;32m[+]\033[0m Parsing requests..."
 
 	for item in xml:
@@ -48,12 +46,9 @@ def get_header_content(r, hdr, verbose):
 
 	req = []
 	hdrs = []
-	req_index = 0
 
 	for p in r:
-		
 		if hdr.strip() in p[1]:
-		
 			try:
 				pattern = re.compile(".*%s:.*" % hdr)
 				t = re.findall(pattern, p[1])[0].strip()
@@ -67,9 +62,6 @@ def get_header_content(r, hdr, verbose):
 				if t not in hdrs:
 					hdrs.append(t)
 					req.append(p[0])
-
-		req_index += 1
-
 
 	if not verbose:
 		print "\033[1;32m[+]\033[0m Unique header responses for: '%s'" % hdr
@@ -88,9 +80,7 @@ def usage():
 if __name__ == "__main__":
 
 	if len(sys.argv) > 4:
-
 		verbose = False
-
 		if "-i" in sys.argv:
 			in_file = sys.argv[sys.argv.index("-i")+1]
 			xml = init_file(in_file)
@@ -99,12 +89,10 @@ if __name__ == "__main__":
 		if "-H" in sys.argv:
 			header = sys.argv[sys.argv.index("-H")+1]
 
-		
 		if "-v" in sys.argv:
 			verbose = True
 
 		get_header_content(req_resp, header, verbose)
-
 	else:
 		usage()
 		exit(1)
