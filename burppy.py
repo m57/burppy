@@ -78,7 +78,7 @@ def get_header_content(r, hdr, verbose):
 	else:
 		print "\033[1;31m[+]\033[0m Header requests and responses for: '%s'\n" % hdr
 		for h in hdrs:
-			print "\033[1;32m[Request  >]\033[0m %s" % req[(h)]
+			print "\033[1;32m[Request  >]\033[0m %s" % req[hdrs.index(h)]
 			print "\033[1;32m[Response ?]\033[0m %s\n" % h
 
 def usage():
